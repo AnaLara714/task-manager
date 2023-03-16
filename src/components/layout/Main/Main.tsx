@@ -8,6 +8,8 @@ import { RenomeProject } from "../RenomeProject/RenomeProject";
 import { AddTask } from "../AddTask/AddTask";
 import { Delete } from "@mui/icons-material";
 import { SeeMoreTask } from "../SeeMoreTask/SeeMoreTask";
+import { NoteData } from "@/config/types";
+import { getDate, getWeekendDate } from "@/utils/date";
 
 
 export const Main: React.FC = () => {
@@ -26,17 +28,38 @@ export const Main: React.FC = () => {
       );
   });
   const SeeTask = useSelector((state: RootState) => {
-    /*switch(state.project.projects) {
+    switch(state.project.seeMoreProject) {
       case 0:
-        const tasks = [...state.project.projects.map(project => console.log(project.tasks))]; 
-        // console.log(project.tasks)
+        let tasks0 = [] as NoteData[];
+        state.project.projects.forEach(project => {
+          tasks0.push(...project.tasks);
+        });
+        return tasks0;
       case 1:
-        return console.log("as tarefas de hoje")
+        let tasks1 = [] as NoteData[];
+        state.project.projects.forEach(project => {
+          project.tasks.forEach(task => {
+            const taskDate = new Date(task.startDate).getTime();
+            const todayDate = new Date(getDate()).getTime();
+            if (taskDate === todayDate) tasks1.push(task);
+          });
+        });
+        return tasks1;
       case 2: 
-        return console.log("tarefas dessa semana")
+        let tasks2 = [] as NoteData[];
+        state.project.projects.forEach(project => {
+          project.tasks.forEach(task => {
+            const taskDate = new Date(task.startDate).getTime();
+            const todayDate = new Date(getDate()).getTime();
+            const weekEndDate = new Date(getWeekendDate()).getTime();
+            if (taskDate >= todayDate && taskDate <= weekEndDate)
+              tasks2.push(task);
+          });
+        });
+        return tasks2;
       default: 
-        return [console.log(state.project.projects.find(project => project.id === SeenProject.id)?.tasks)]
-    }*/
+        return (state.project.projects.find(project => project.id === SeenProject?.id)?.tasks || [])
+    }
   });
   const onRemoveTaskButtonClick = (id:number) => 
     dispacth(removeTask({projectID: SeenProject?.id, taskID: id}));
@@ -50,7 +73,7 @@ export const Main: React.FC = () => {
     <Typography>
       Tarefas: 
     </Typography>
-      {SeenProject?.tasks.map(task => 
+      {SeeTask.map(task => 
       <>
       <div className={styles.summaryTask}>
         <div>

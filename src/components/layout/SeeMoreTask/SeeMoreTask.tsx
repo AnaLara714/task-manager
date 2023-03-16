@@ -18,7 +18,6 @@ export const SeeMoreTask: React.FC<IDetailTask> = ({description, startDate, prio
   const theme = useTheme();
   const styles = useStyles();
 
-  const [EditTask, setEditTask] = React.useState(false);
   const [seenMoreTask, setSeenMoreTask] = React.useState(false);
 
   const onSeenMoreTaskButtonClick = () => 
@@ -38,11 +37,10 @@ export const SeeMoreTask: React.FC<IDetailTask> = ({description, startDate, prio
           <div className={styles.detailedTask}>
             <Typography> Descrição: {description !== "" ? description 
             : "Essa tarefa não há descrição"}</Typography> 
-            <Typography> Prioridade: {priority}</Typography> 
-            <Typography> Status: {state}</Typography> 
+            {String(priority) === "" ? true : <Typography> Prioridade: {priority}</Typography>} 
+            {String(state) === "" ? true : <Typography> Status: {state}</Typography>} 
             {String(startDate) === "" ? true : <Typography> Data de início {String(startDate)}</Typography>} 
             {String(dueDate) === "" ? true : <Typography> Data de término {String(dueDate)}</Typography>} 
-
             {/* <UpdateTask/>    */}
           </div>
         </>
