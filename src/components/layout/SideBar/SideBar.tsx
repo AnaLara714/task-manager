@@ -1,16 +1,13 @@
 import React from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { 
-  Button,
-         Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, 
-         ListItemText, TextField, Typography, useMediaQuery, useTheme 
-       } from "@mui/material";
-import { Add, ArrowRight, DateRange, Delete, Inbox, Today } from '@mui/icons-material';
-import { Box } from "@mui/system";
-import { useDrawerContext } from "@/contexts";
+import { Button,Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, 
+         ListItemText, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Add, ArrowRight, Delete } from '@mui/icons-material';
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store";
 import { addProject, removeProject, seenProject } from "@/store/projectSlicer";
+import { useDrawerContext } from "@/contexts";
+import { Box } from "@mui/system";
+import { RootState } from "@/store";
 import { useStyles } from "./SideBar.style";
 
 interface Props {
@@ -26,13 +23,8 @@ interface IListItemLinkProps {
 };
 
 const ListItemLink: React.FC<IListItemLinkProps> = ({ iconLeft, iconRight, label, onClick, visibility }) => {
-  // const resolvedPath = useResolvedPath("/");
-  // const macth = useMatch({ path: resolvedPath.pathname, end: false});
-
-  const handleClick = (prop: any) => {
-    // navigate(to);
+  const handleClick = (prop: any) => 
     onClick?.();
-  };
 
   return (
     <ListItemButton onClick={handleClick} className={visibility}>
@@ -42,7 +34,6 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({ iconLeft, iconRight, label
     </ListItemButton>
   );
 };
-
 
 export const SideBar: React.FC<Props> = ({ children }) => {
   const [NameProject, setNameProject] = React.useState("");
@@ -61,22 +52,18 @@ export const SideBar: React.FC<Props> = ({ children }) => {
     setAddNameProject(true);
     setNameProject("");
   }
-  const onAddNameProjectInputChange = (e:any) => {
-    setNameProject(e.target.value);
-  }
   const onAddProjectButtonClick = () => {
     NameProject === "" ? alert("Adicione o nome do projeto") : dispacth(addProject(NameProject));
     setAddNameProject(false);
   }
-  const onCancelProjectButtonClick = () => {
+  const onAddNameProjectInputChange = (e:any) =>
+    setNameProject(e.target.value);
+  const onCancelProjectButtonClick = () => 
     setAddNameProject(false);
-  }
-  const onRemoveProjectButtonClick = (id:number) => {
+  const onRemoveProjectButtonClick = (id:number) => 
     dispacth(removeProject(id));
-  }
-  const onSeeMoreProject = (id: number) => {
+  const onSeeMoreProject = (id: number) => 
     dispacth(seenProject(id));
-  }
 
   return (
     <>
@@ -127,7 +114,7 @@ export const SideBar: React.FC<Props> = ({ children }) => {
                   <Typography className={styles.buttonCancel} color={theme.palette.text.primary}>Cancelar</Typography>
                 </Button>
               </div>
-          </List>
+            </List>
           </Box>
         </Box>
       </Drawer>

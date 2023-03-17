@@ -13,7 +13,6 @@ export const TaskManager: React.FC = () => {
       <SideBar>
         <Header/>
         <Main/>
-        <Footer/>
       </SideBar>
       </DrawerProvider> 
     </AppThemeProvider>

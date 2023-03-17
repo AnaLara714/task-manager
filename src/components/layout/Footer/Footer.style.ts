@@ -10,4 +10,5 @@ export const FooterDiv = styled('div')({
   color: "#FFFFFF",
   background: "#3A9903",
   padding: 15,
+  // position: "fixed",
 });

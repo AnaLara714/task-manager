@@ -1,7 +1,7 @@
+import React from "react";
 import { RootState } from "@/store";
 import { updateTask } from "@/store/projectSlicer";
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./UpdateTask.styles";
 

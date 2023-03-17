@@ -1,7 +1,7 @@
-import { RootState } from "@/store";
-import { addTask, updateProject } from "@/store/projectSlicer";
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import React from "react";
+import { RootState } from "@/store";
+import { addTask } from "@/store/projectSlicer";
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./AddTask.style";
 
@@ -108,35 +108,27 @@ export const AddTask: React.FC = () => {
         </div>
         <div className={styles.inputsDate}> 
           <FormControl className={styles.inputSelect}>
-            <InputLabel>
-              Prioridade
-            </InputLabel>
-              <Select onChange={(e) => {
-                        const {
-                            target: { value },
-                        } = e;
-                      setPriorityTask(value);
-                    }} value={priorityTask}>
-                <MenuItem value={"Baixa"} >Baixa</MenuItem>
-                <MenuItem value={"Normal"}>Normal</MenuItem>
-                <MenuItem value={"Alta"}>Alta</MenuItem>
-              </Select>
-            </FormControl>
+            <InputLabel>Prioridade</InputLabel>
+            <Select 
+              onChange={(e) => {const {target: { value }, } = e; setPriorityTask(value); }} 
+              value={priorityTask}
+            >
+              <MenuItem value={"Baixa"} >Baixa</MenuItem>
+              <MenuItem value={"Normal"}>Normal</MenuItem>
+              <MenuItem value={"Alta"}>Alta</MenuItem>
+            </Select>
+          </FormControl>
           <FormControl className={styles.inputSelect}>
-            <InputLabel>
-              Status
-            </InputLabel>
-              <Select onChange={(e) => {
-                        const {
-                            target: { value },
-                        } = e;
-                      setStatusTask(value);
-                    }} value={statusTask}>
-                <MenuItem value={"Novo"}>Novo</MenuItem>
-                <MenuItem value={"Em andamento"}>Em andamento</MenuItem>
-                <MenuItem value={"Pronto"}>Pronto</MenuItem>
-              </Select>
-            </FormControl>
+            <InputLabel>Status</InputLabel>
+            <Select 
+              onChange={(e) => {const {target: { value },} = e; setStatusTask(value);}} 
+              value={statusTask}
+            >
+              <MenuItem value={"Novo"}>Novo</MenuItem>
+              <MenuItem value={"Em andamento"}>Em andamento</MenuItem>
+              <MenuItem value={"Pronto"}>Pronto</MenuItem>
+            </Select>
+          </FormControl>
         </div>
       </div>
       <div className={NewTask ? `${styles.visibleON} ${styles.salveTask} ${styles.divInputsTask}` : styles.visibleOFF}>

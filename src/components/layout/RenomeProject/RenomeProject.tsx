@@ -1,17 +1,15 @@
-import { RootState } from "@/store";
-import { addTask, updateProject } from "@/store/projectSlicer";
-import { Button, TextField, Typography } from "@mui/material";
 import React from "react";
+import { RootState } from "@/store";
+import { updateProject } from "@/store/projectSlicer";
+import { Button, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./RenomeProject.style";
 
 export const RenomeProject: React.FC = () => {
   const styles = useStyles();
+  const dispacth = useDispatch();
   const [NameProject, setNameProject] = React.useState("");
   const [UpdateNameProject, setUpdateNameProject] = React.useState(false);
-
-  const projects = useSelector((state: RootState) => state.project.projects);
-  const dispacth = useDispatch();
 
   const SeenProject = useSelector((state: RootState) => {
     return state.project.projects.find(
@@ -23,16 +21,17 @@ export const RenomeProject: React.FC = () => {
     setUpdateNameProject(true);
     setNameProject("");
   };
-  const onAddNewNameProjectInputChange = (e:any) => {
+
+  const onAddNewNameProjectInputChange = (e:any) => 
     setNameProject(e.target.value);
-  };
+
   const onSalveProjectButtonClick = () => {
     NameProject === "" ? alert("Adicione o nome do projeto") : dispacth(updateProject({id: SeenProject?.id, title: NameProject}));
     setUpdateNameProject(false);
   }
-  const onCancelProjectButtonClick = () => {
+  
+  const onCancelProjectButtonClick = () => 
     setUpdateNameProject(false);
-  };
   
   return (
     <div>

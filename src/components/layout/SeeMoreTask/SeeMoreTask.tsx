@@ -1,7 +1,7 @@
+import React from "react";
 import { RootState } from "@/store";
 import { ExpandLess, ExpandMore, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button, Typography, useTheme } from "@mui/material";
-import React from "react";
 import { UpdateTask } from "../UpdateTask/UpdateTask";
 import { useStyles } from "./SeeMoreTask.style";
 
